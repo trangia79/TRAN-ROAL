@@ -27,7 +27,7 @@ export default function ReportIssuePage() {
             Báo Lỗi & Phản Hồi Hệ Thống
           </h1>
           <p className="text-slate-500 text-sm mt-1">
-           Trần Roal-SDT: 039 333 7899-Email: tranroal79@gamil.com
+           Trần Roal - SDT: 039 333 7899 - Email: tranroal79@gmail.com
           </p>
         </div>
 

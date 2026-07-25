@@ -22,7 +22,7 @@ export default function ContactPage() {
           <div className="p-4 bg-slate-50 rounded-xl border border-slate-100 flex items-start gap-3">
             <span className="text-xl">📞</span>
             <div>
-              <strong>Điện thoại nhà trường:</strong> (02973) 837 837
+              <strong>Điện thoại nhà trường:</strong> (02973) 837 437
             </div>
           </div>
 
