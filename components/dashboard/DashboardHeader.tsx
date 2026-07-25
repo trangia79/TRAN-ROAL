@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link"; // 👈 Thêm import Link
 import { logout } from "@/services/authService";
 import { exportSurveyToExcel } from "@/utils/exportExcel";
 import { exportDashboardToPDF } from "@/utils/exportPDF";
@@ -10,12 +11,12 @@ import QRCodeModal from "./QRCodeModal";
 
 type Props = {
   surveys: Survey[];
-  schoolName?: string; // 👈 Thêm prop tên trường (không bắt buộc)
+  schoolName?: string;
 };
 
 export default function DashboardHeader({
   surveys,
-  schoolName = "Trường THCS&THPT Mong Thọ", // 👈 Tên trường mặc định ở đây
+  schoolName = "Trường THCS&THPT Mong Thọ",
 }: Props) {
   const router = useRouter();
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
@@ -37,7 +38,6 @@ export default function DashboardHeader({
     <>
       <div className="mb-8 flex items-center justify-between">
         <div>
-          {/* 👇 Hiển thị tên trường động ở đây */}
           <h1 className="text-4xl font-bold text-blue-700">
             {schoolName}
           </h1>
@@ -46,7 +46,15 @@ export default function DashboardHeader({
           </p>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-3 items-center">
+          {/* 👇 Nút Quay lại trang chủ mới thêm */}
+          <Link
+            href="/"
+            className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-lg transition-all flex items-center gap-1 border border-slate-200"
+          >
+            🏠 Trang chủ
+          </Link>
+
           <button
             type="button"
             onClick={() => setIsQRModalOpen(true)}
@@ -78,7 +86,7 @@ export default function DashboardHeader({
 
           <button
             onClick={handleLogout}
-            className="rounded-xl bg-slate-700 px-5 py-2 text-white hover:bg-slate-800 transition-all"
+            className="rounded-xl bg-slate-700 px-5 py-2 text-white hover:bg-slate-800 transition-all font-medium"
           >
             Đăng xuất
           </button>
