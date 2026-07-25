@@ -29,13 +29,13 @@ export default function Hero() {
   >
     📝 Bắt đầu khảo sát
   </Link>
-
+<Link href="/qr">
   <button
     className="rounded-xl border-2 border-blue-600 px-8 py-4 text-lg font-semibold text-blue-600 transition hover:bg-blue-50"
   >
     📷 Quét mã QR
   </button>
-
+</Link>
 </div>
 
       </div>
