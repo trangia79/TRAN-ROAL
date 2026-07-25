@@ -22,14 +22,14 @@ export default function ContactPage() {
           <div className="p-4 bg-slate-50 rounded-xl border border-slate-100 flex items-start gap-3">
             <span className="text-xl">📞</span>
             <div>
-              <strong>Điện thoại nhà trường:</strong> (0297) 837 437
+              <strong>Điện thoại nhà trường:</strong> (02973) 837 837
             </div>
           </div>
 
           <div className="p-4 bg-slate-50 rounded-xl border border-slate-100 flex items-start gap-3">
             <span className="text-xl">✉️</span>
             <div>
-              <strong>Email góp ý:</strong> roalt@c3mongtho.edu.vn
+              <strong>Email góp ý:</strong> c3mongtho.kiengiang@moet.edu.vn
             </div>
           </div>
         </div>
