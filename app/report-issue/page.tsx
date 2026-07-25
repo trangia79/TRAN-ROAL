@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export default function ReportIssuePage() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -12,10 +15,28 @@ export default function ReportIssuePage() {
     description: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Xử lý gửi dữ liệu (có thể kết nối Firebase hoặc gửi Email tại đây)
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      // 📥 Gửi dữ liệu lưu trực tiếp vào collection "reports" trên Firebase
+      await addDoc(collection(db, "reports"), {
+        name: formData.name || "Ẩn danh",
+        contact: formData.contact || "Không cung cấp",
+        issueType: formData.issueType,
+        description: formData.description,
+        status: "pending", // Trạng thái: Chưa xử lý
+        createdAt: serverTimestamp(),
+      });
+
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Lỗi khi gửi báo lỗi:", error);
+      alert("❌ Có lỗi xảy ra khi gửi báo lỗi. Vui lòng thử lại!");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -27,7 +48,7 @@ export default function ReportIssuePage() {
             Báo Lỗi & Phản Hồi Hệ Thống
           </h1>
           <p className="text-slate-500 text-sm mt-1">
-           Trần Roal - SDT: 039 333 7899 - Email: tranroal79@gmail.com
+            EduSIPAS - Trường THCS & THPT Mong Thọ
           </p>
         </div>
 
@@ -129,9 +150,10 @@ export default function ReportIssuePage() {
               </Link>
               <button
                 type="submit"
-                className="w-2/3 py-3 rounded-xl bg-blue-600 font-semibold text-white hover:bg-blue-700 transition text-sm shadow-md"
+                disabled={isSubmitting}
+                className="w-2/3 py-3 rounded-xl bg-blue-600 font-semibold text-white hover:bg-blue-700 disabled:bg-blue-300 transition text-sm shadow-md"
               >
-                🚀 Gửi báo lỗi
+                {isSubmitting ? "⏳ Đang gửi..." : "🚀 Gửi báo lỗi"}
               </button>
             </div>
           </form>

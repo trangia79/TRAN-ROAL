@@ -7,6 +7,7 @@ import SurveyPieChart from "@/components/dashboard/SurveyPieChart";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import SurveyBarChart from "@/components/dashboard/SurveyBarChart";
 import RecentSurvey from "@/components/dashboard/RecentSurvey";
+import ReportsList from "@/components/dashboard/ReportsList"; // 👈 1. Đã thêm import ReportsList
 import { useSurveyStats } from "@/hooks/useSurveyStats";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
@@ -81,7 +82,7 @@ export default function DashboardPage() {
 
   return (
     <main id="dashboard-content" className="min-h-screen bg-slate-100 p-8">
-      {/* 👇 ĐÃ THÊM TÊN TRƯỜNG Ở ĐÂY - BẠN HÃY SỬA LẠI TÊN NHÉ */}
+      {/* HEADER TRANG DASHBOARD */}
       <DashboardHeader 
         surveys={filteredSurveys} 
         schoolName="Trường THCS&THPT Mong Thọ" 
@@ -102,6 +103,7 @@ export default function DashboardPage() {
         </select>
       </div>
 
+      {/* CÁC THẺ CHỈ SỐ KPI */}
       <div className="grid gap-6 md:grid-cols-3">
         <StatCard title="Tổng khảo sát" value={total} color="text-blue-700" icon="📋" />
         <StatCard title="Chỉ số SIPAS" value={`${sipas}%`} color="text-emerald-700" icon="🏆" />
@@ -113,13 +115,20 @@ export default function DashboardPage() {
         <StatCard title="😠 Không hài lòng" value={khongHaiLong} color="text-red-600" icon="😠" />
       </div>
 
+      {/* BIỂU ĐỒ THỐNG KÊ */}
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         <SurveyPieChart data={pieData} />
         <SurveyBarChart data={pieData} />
       </div>
       
+      {/* DANH SÁCH KHẢO SÁT GẦN ĐÂY */}
       <div className="mt-10">
         <RecentSurvey surveys={filteredSurveys} />
+      </div>
+
+      {/* 👇 2. ĐÃ CHÈN DANH SÁCH BÁO LỖI & PHẢN HỒI Ở ĐÂY */}
+      <div className="mt-10">
+        <ReportsList />
       </div>
     </main>
   );
