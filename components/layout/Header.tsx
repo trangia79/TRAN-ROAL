@@ -35,9 +35,11 @@ export default function Header() {
         </nav>
 
         {/* Button */}
-        <button className="rounded-xl bg-blue-600 px-6 py-3 text-white transition hover:bg-blue-700">
-          Đăng nhập
-        </button>
+       <Link href="/login">
+  <button className="...">
+    Đăng nhập
+  </button>
+</Link>
 
       </div>
     </header>

@@ -15,7 +15,7 @@ type Props = {
 
 export default function DashboardHeader({
   surveys,
-  schoolName = "Trường THPT Nguyễn Du", // 👈 Tên trường mặc định ở đây
+  schoolName = "Trường THCS&THPT Mong Thọ", // 👈 Tên trường mặc định ở đây
 }: Props) {
   const router = useRouter();
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
