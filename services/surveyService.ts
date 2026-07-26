@@ -3,7 +3,6 @@ import {
   onSnapshot,
   query,
   orderBy,
-  limit,
   Timestamp,
   getDocs,
   deleteDoc,
@@ -18,14 +17,13 @@ export interface Survey {
   createdAt?: Timestamp;
 }
 
-// 📡 Lắng nghe dữ liệu khảo sát theo thời gian thực (10 bài mới nhất)
+// 📡 Lắng nghe TOÀN BỘ dữ liệu khảo sát theo thời gian thực để thống kê chính xác
 export const listenSurveys = (
   callback: (data: Survey[]) => void
 ) => {
   const q = query(
     collection(db, "surveys"),
-    orderBy("createdAt", "desc"),
-    limit(10)
+    orderBy("createdAt", "desc")
   );
 
   return onSnapshot(q, (snapshot) => {
