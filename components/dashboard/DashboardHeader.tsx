@@ -23,7 +23,6 @@ export default function DashboardHeader({
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
 
-  // Xử lý đăng xuất
   const handleLogout = async () => {
     const ok = confirm("Bạn có chắc chắn muốn đăng xuất?");
     if (!ok) return;
@@ -37,7 +36,6 @@ export default function DashboardHeader({
     }
   };
 
-  // 🗑️ Xử lý Reset toàn bộ dữ liệu
   const handleResetData = async () => {
     const firstConfirm = confirm(
       "⚠️ CẢNH BÁO NGUY HIỂM:\n\nBạn có chắc chắn muốn XÓA TOÀN BỘ dữ liệu khảo sát hiện tại không?\n\nDữ liệu sau khi xóa sẽ KHÔNG THỂ KHÔI PHỤC!"
@@ -55,8 +53,6 @@ export default function DashboardHeader({
       setIsResetting(true);
       await resetAllSurveys();
       alert("✅ Đã reset toàn bộ dữ liệu khảo sát thành công!");
-      
-      // Tải lại trang để cập nhật các chỉ số về 0
       window.location.reload();
     } catch (error) {
       alert("❌ Có lỗi xảy ra khi xóa dữ liệu. Vui lòng thử lại!");
@@ -69,17 +65,16 @@ export default function DashboardHeader({
     <>
       <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          {/* 👇 HIỆU ỨNG TÊN TRƯỜNG TO, GRADIENT VÀ PHÁT SÁNG NỔI BẬT */}
-          <h1 className="py-1 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-cyan-400 drop-shadow-[0_0_15px_rgba(6,182,212,0.6)]">
+          {/* 👇 HIỆU ỨNG MỚI: CHUYÊN NGHIỆP, SẮC NÉT, KHÔNG PHÁT SÁNG */}
+          <h1 className="py-1 text-4xl md:text-5xl lg:text-6xl font-black text-blue-900 tracking-tight">
             {schoolName}
           </h1>
-          <p className="text-slate-500 text-sm mt-2">
+          <p className="text-slate-500 text-sm mt-2 font-medium">
             Hệ thống khảo sát mức độ hài lòng (EduSIPAS)
           </p>
         </div>
 
         <div className="flex flex-wrap gap-2.5 items-center">
-          {/* Nút Quay lại trang chủ */}
           <Link
             href="/"
             className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition-all flex items-center gap-1 border border-slate-200"
@@ -87,7 +82,6 @@ export default function DashboardHeader({
             🏠 Trang chủ
           </Link>
 
-          {/* Nút Mã QR */}
           <button
             type="button"
             onClick={() => setIsQRModalOpen(true)}
@@ -96,7 +90,6 @@ export default function DashboardHeader({
             📱 Mã QR
           </button>
 
-          {/* Nút Xuất Excel */}
           <button
             type="button"
             onClick={() => exportSurveyToExcel(surveys)}
@@ -105,7 +98,6 @@ export default function DashboardHeader({
             📥 Xuất Excel
           </button>
 
-          {/* Nút Xuất PDF */}
           <button
             type="button"
             onClick={() =>
@@ -119,7 +111,6 @@ export default function DashboardHeader({
             📄 Xuất PDF
           </button>
 
-          {/* Nút Reset Dữ Liệu */}
           <button
             type="button"
             onClick={handleResetData}
@@ -129,7 +120,6 @@ export default function DashboardHeader({
             {isResetting ? "⏳ Đang xóa..." : "🔄 Reset dữ liệu"}
           </button>
 
-          {/* Nút Đăng xuất */}
           <button
             onClick={handleLogout}
             className="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white text-sm font-medium rounded-lg transition-all"
