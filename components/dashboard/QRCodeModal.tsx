@@ -9,14 +9,14 @@ type Props = {
 };
 
 export default function QRCodeModal({ isOpen, onClose }: Props) {
-  const [surveyUrl, setSurveyUrl] = useState("");
+  // 🔗 Đã gắn trực tiếp link ứng dụng Vercel của bạn
+  const APP_URL = "https://suhailong.vercel.app/";
+  const [surveyUrl, setSurveyUrl] = useState(APP_URL);
 
-  // Tự động lấy tên miền hiện tại (localhost hoặc domain thật sau khi deploy)
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Giả sử trang làm khảo sát của bạn nằm ở đường dẫn /survey
-      // Nếu trang khảo sát nằm ở trang chủ "/", bạn sửa lại thành window.location.origin
-      setSurveyUrl(`${window.location.origin}/survey`);
+      // Ưu tiên dùng đường link thực tế của ứng dụng
+      setSurveyUrl(window.location.origin || APP_URL);
     }
   }, []);
 
