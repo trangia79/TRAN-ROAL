@@ -48,7 +48,7 @@ export default function ReportIssuePage() {
             Báo Lỗi & Phản Hồi Hệ Thống
           </h1>
           <p className="text-slate-500 text-sm mt-1">
-            EduSIPAS - Trường THCS & THPT Mong Thọ
+            EduSIPAS - TRẦN ROAL - 039 333 7899 - TRANROAL79@GMAIL.COM
           </p>
         </div>
 
