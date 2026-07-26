@@ -13,8 +13,8 @@ export default function Header() {
             <Image
               src="/logo.png" // Đường dẫn logo của bạn
               alt="EduSIPAS Logo"
-              width={48}
-              height={48}
+              width={68}
+              height={68}
               className="object-contain"
             />
           </div>
