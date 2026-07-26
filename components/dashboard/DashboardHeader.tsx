@@ -8,7 +8,7 @@ import { exportSurveyToExcel } from "@/utils/exportExcel";
 import { exportDashboardToPDF } from "@/utils/exportPDF";
 import { Survey } from "@/types/survey";
 import QRCodeModal from "./QRCodeModal";
-import { resetAllSurveys } from "@/services/surveyService"; // 👈 Import hàm reset
+import { resetAllSurveys } from "@/services/surveyService";
 
 type Props = {
   surveys: Survey[];
@@ -69,10 +69,11 @@ export default function DashboardHeader({
     <>
       <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold text-blue-700">
+          {/* 👇 HIỆU ỨNG TÊN TRƯỜNG TO, GRADIENT VÀ PHÁT SÁNG NỔI BẬT */}
+          <h1 className="py-1 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-cyan-400 drop-shadow-[0_0_15px_rgba(6,182,212,0.6)]">
             {schoolName}
           </h1>
-          <p className="text-slate-500 text-sm mt-1">
+          <p className="text-slate-500 text-sm mt-2">
             Hệ thống khảo sát mức độ hài lòng (EduSIPAS)
           </p>
         </div>
@@ -118,7 +119,7 @@ export default function DashboardHeader({
             📄 Xuất PDF
           </button>
 
-          {/* 👇 NÚT RESET DỮ LIỆU MỚI THÊM */}
+          {/* Nút Reset Dữ Liệu */}
           <button
             type="button"
             onClick={handleResetData}
